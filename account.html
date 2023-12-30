@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Account Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+    	body{margin-top:20px;
+background-color:#f2f6fc;
+color:#69707a;
+}
+.img-account-profile {
+    height: 10rem;
+}
+.rounded-circle {
+    border-radius: 50% !important;
+}
+.card {
+    box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
+}
+.card .card-header {
+    font-weight: 500;
+}
+.card-header:first-child {
+    border-radius: 0.35rem 0.35rem 0 0;
+}
+.card-header {
+    padding: 1rem 1.35rem;
+    margin-bottom: 0;
+    background-color: rgba(33, 40, 50, 0.03);
+    border-bottom: 1px solid rgba(33, 40, 50, 0.125);
+}
+.form-control, .dataTable-input {
+    display: block;
+    width: 100%;
+    padding: 0.875rem 1.125rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1;
+    color: #69707a;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #c5ccd6;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.35rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.nav-borders .nav-link.active {
+    color: #0061f2;
+    border-bottom-color: #0061f2;
+}
+.nav-borders .nav-link {
+    color: #69707a;
+    border-bottom-width: 0.125rem;
+    border-bottom-style: solid;
+    border-bottom-color: transparent;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+.footer {
+  color: #69707a;
+  text-align: center;
+  padding: 10px 0;
+  position: absolute;
+  bottom: 20;
+  width: 100%;
+  border-top: 1px solid #c5ccd6;
+}
+
+.footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.profile-icon {
+    height: 32px; /* Adjust the size as needed */
+    width: auto; /* Keeps the aspect ratio */
+    cursor: pointer; /* Changes the cursor to indicate it's clickable */
+}
+
+/* Style the dropdown menu */
+.dropdown-menu {
+    right: 0; /* Align the dropdown to the right */
+}
+#signOutButton {
+    padding: .375rem .75rem; /* Button padding */
+    border: 1px solid #dc3545; /* Border to match text color */
+    border-radius: .25rem; /* Rounded corners for the button */
+    background-color: transparent; /* Transparent background */
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+}
+
+#signOutButton:hover {
+    color: #fff; /* White text on hover */
+    background-color: #dc3545; /* Red background on hover */
+    text-decoration: none; /* Remove underline on hover */
+}   
+    </style>
+    </head>
+<body>
+
+<div class="container-xl px-4 mt-4">
+
+    <nav class="nav nav-borders justify-content-center">
+        <!-- Centered Links -->
+        <div class="d-flex justify-content-center">
+            <nav class="nav nav-borders">
+                <a class="nav-link ms-0" href="users.html">Autre Utilisateurs</a>
+            </nav>
+        </div>
+    
+        <!-- Right-aligned dropdown -->
+        <div class="dropdown ms-auto"> <!-- Added ms-auto for right alignment -->
+            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png" alt="Profile Icon" class="profile-icon">
+            </a>
+    
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item" href="account.html">Edit Profile</a></li>
+                <li><a class="dropdown-item" href="parametres.html">Settings</a></li>
+                <li><a class="dropdown-item" href="Contact-us.html">Help & Support</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="javascript:void(0);" id="signOutButton">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+      
+
+     
+
+    <hr class="mt-0 mb-4">
+
+ 
+
+    <form id="profile-form">
+        <div class="row mb-3">
+            <div class="col-xl-4">
+                <div class="card mb-4 mb-xl-0">
+                    <div class="card-header">Photo de profil</div>
+                    <div class="card-body text-center">
+                        <img class="img-account-profile rounded-circle mb-2" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" id="profile-image">
+                        <div class="small font-italic text-muted mb-4">Ajouter Votre Photo de profil</div>
+                        <input type="file" id="profile-image-input" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            
+
+          
+            <div class="col-xl-8">
+                <div class="card mb-4">
+                    <div class="card-header">Personal Informations</div>
+                    <div class="card-body">
+
+
+                        <div class="mb-3">
+                            <label class="small mb-1" for="inputBiography">Biography</label>
+                            <textarea class="form-control" id="inputBiography" placeholder="Enter your biography" required></textarea>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label class="small mb-1" for="inputUsername">Nom D'Utilisateur</label>
+                            <input class="form-control" id="inputUsername" type="text" placeholder="Enter your username" required>
+                        </div>
+
+
+                        <div class="row gx-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputFirstName">Nom</label>
+                                <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputLastName">Prénom</label>
+                                <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" required>
+                            </div>
+                        </div>
+
+
+                        
+
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="inputGender">Genre</label>
+                                    <select class="form-control" id="inputGender" name="gender" required>
+                                        <option value="">Votre genre</option>
+                                        <option value="male">Homme</option>
+                                        <option value="female">Femme</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="inputAge">Age</label>
+                                    <input class="form-control" id="inputAge" type="text" placeholder="Entrer votre Age actuelle" value="" required>
+                                </div>
+                                
+                                
+                            </div>
+
+                            <div class="row gx-3 mb-3">
+
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputEmail">Address email </label>
+                                <input class="form-control" id="inputEmail" type="tel" placeholder="Entrer votre address email personnel" value=""required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputPhone">Numéro de Téléphone</label>
+                                <input class="form-control" id="inputPhone" type="tel" placeholder="Entrer votre numéro de téléphone" value=""required>
+                            </div>
+
+                            </div>
+                            
+                            
+                            
+                            <div class="row gx-3 mb-3">
+                            
+                            <div class="col-md-6">
+                            <label class="small mb-1" for="inputPlace">Lieu de Naissance</label>
+                            <input class="form-control" id="inputPlace" type="tel" placeholder="Entrer votre lieu de naissance" value="" required>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputBirthday">Date de Naissance</label>
+                                <input class="form-control" id="inputBirthday" type="date" name="birthday" placeholder="Entrer votre date de naissance" required>
+                            </div>
+                                
+                            </div>
+
+                            
+                    </div>
+                </div>
+            
+            
+                <div class="card mb-4">
+                    <div class="card-header">Academic Informations</div>
+                    <div class="card-body">
+            
+                      
+            
+                      
+            
+            
+                        <div class="row gx-3 mb-3">
+            
+                            <div class="col-md-6">
+                            <label class="small mb-1" for="inputCin">CIN</label>
+                            <input class="form-control" id="inputCin" type="text" placeholder="Entrer votre CIN" value=""required>
+                            </div>
+                            
+                            <div class="col-md-6">
+                            <label class="small mb-1" for="inputCne">CNE</label>
+                            <input class="form-control" id="inputCne" type="text" placeholder="Entrer votre CNE" value="" required>
+                            </div>
+                        </div>
+            
+            
+                           
+            
+                            <div class="row gx-3 mb-3">
+            
+                                
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="inputVille">Ville Actulle</label>
+                                    <select class="form-control" id="inputVille" name="Ville" required>
+                                        <option value="Casablanca">Casablanca</option>
+                                        <option value="Marrakech">Marrakech</option>
+                                        <option value="Rabat">Rabat</option>
+                                        <option value="Fes (Fez)">Fes (Fez)</option>
+                                        <option value="Tangier">Tangier</option>
+                                        <option value="Agadir">Agadir</option>
+                                        <option value="Meknes">Meknes</option>
+                                        <option value="Oujda">Oujda</option>
+                                        <option value="Kenitra">Kenitra</option>
+                                        <option value="Tetouan">Tetouan</option>
+                                        <option value="Safi">Safi</option>
+                                        <option value="Laayoune">Laayoune</option>
+                                        <option value="Nador">Nador</option>
+                                        <option value="Al Hoceima">Al Hoceima</option>
+                                        <option value="Beni Mellal">Beni Mellal</option>
+                                        <option value="Taza">Taza</option>
+                                        <option value="Settat">Settat</option>
+                                        <option value="Khouribga">Khouribga</option>
+                                        <option value="El Jadida">El Jadida</option>
+                                        <option value="Errachidia">Errachidia</option>
+                                        
+            
+                                    </select>
+                                </div>
+            
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="inputEcole">Ecole</label>
+                                    <select class="form-control" id="inputEcole" name="Ecole" required>
+                                        <option value="ENS">ENS</option>
+                                        <option value="ENSA ">ENSA </option>
+                                        <option value="ENCG ">ENCG </option>
+                                        <option value="EHTP ">EHTP </option>
+                                        <option value="ENSIAS ">ENSIAS </option>
+                                        <option value="INSEA ">INSEA </option>
+                                        <option value="ISCAE  ">ISCAE  </option>
+                                        <option value="EMI  ">EMI  </option>
+                                        <option value="ENSMR  ">ENSMR  </option>
+                                        <option value="ENSAM  ">ENSAM  </option>
+                                        <option value="ENSP  ">ENSP  </option>
+                                        <option value="ENSEM  ">ENSEM  </option>
+                                        <option value="ENSAH  ">ENSAH  </option>
+                                        <option value="ENSET  ">ENSET  </option>
+                                        <option value="FST  ">FST  </option>
+            
+                                    </select>
+                                </div>
+                                
+                                
+                            </div>
+            
+            
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="inputPromotion">Promotion</label>
+                                    <select class="form-control" id="inputPromotion" name="promotion" required>
+                                        <option value="s1">S1</option>
+                                        <option value="s2">S2</option>
+                                        <option value="s2">S3</option>
+                                        <option value="s2">S4</option>
+                                        <option value="s2">S5</option>
+                                        <option value="s2">S6</option>
+                                    </select>
+                                </div>
+            
+            
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="inputFiliere">Filiére</label>
+                                    <select class="form-control" id="inputFiliere" name="filiere" required>
+                                        <option value="Informatique">Informatique</option>
+                                        <option value="Mathématique">Mathématique</option>
+                                        <option value="Physique">Physique</option>
+                                        <option value="Anglais">Anglais</option>
+                                        <option value="Francais">Francais</option>
+                                        <option value="Arabe">Arabe</option>
+                                    </select>
+                                </div>
+                                
+                                
+                               
+                            </div>
+                            
+                            
+                            <div class="col-md-6">
+                                <button class="btn btn-primary" type="submit">Save changes</button>
+                                <div id="success-message" class="text-success mt-2 d-none">Saved successfully</div>
+                            </div>
+            
+                            
+                    </div>
+                </div>
+            </div>
+
+            <div id="message-box" class="alert d-none" role="alert">
+                <span id="message-content"></span>
+            </div>
+        </div>
+    </form>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <span>&copy; 2023 Unes Bhs . All Rights Reserved.</span>
+        <span>Created by  ♛ Younes Benelhoms ♛.</span>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-storage.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+
+<script>
+const urlParams = new URLSearchParams(window.location.search);
+const userId = urlParams.get('userId');
+  document.getElementById('signOutButton').addEventListener('click', function() {
+    // Perform the logout operation
+    // For example, if using Firebase Authentication
+    firebase.auth().signOut().then(function() {
+        // Sign-out successful.
+        window.location.href = 'index.html'; // Redirect to the login page after logout
+    }).catch(function(error) {
+        // An error happened during the logout
+        console.error("Error signing out: ", error);
+    });
+});
+
+var firebaseConfig = {
+    apiKey: "AIzaSyDs2gZJ6wIRDOqEtzyIT7toug3Xs3-_w1E",
+    authDomain: "user-7c7f8.firebaseapp.com",
+    projectId: "user-7c7f8",
+    storageBucket: "user-7c7f8.appspot.com",
+    messagingSenderId: "55544751979",
+    appId: "1:55544751979:web:40366cb78cb1cf8162ce2e",
+    measurementId: "G-FP9KRJ1GV3"
+};
+    firebase.initializeApp(firebaseConfig);
+
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            getUserProfile(user.uid);
+        } else {
+            window.location.href = 'index.html';
+        }
+    });
+
+
+    document.getElementById('profile-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+
+    var username = document.getElementById('inputUsername').value;
+    var firstName = document.getElementById('inputFirstName').value;
+    var lastName = document.getElementById('inputLastName').value;
+    var cin = document.getElementById('inputCin').value;
+    var cne = document.getElementById('inputCne').value;
+    var gender = document.getElementById('inputGender').value;
+    var phoneNumber = document.getElementById('inputPhone').value;
+    var birthPlace = document.getElementById('inputPlace').value;
+    var birthDate = document.getElementById('inputBirthday').value;
+    var promotion = document.getElementById('inputPromotion').value;
+    var filiere = document.getElementById('inputFiliere').value;
+    var Age = document.getElementById('inputAge').value;
+    var Ecole = document.getElementById('inputEcole').value;
+    var Email = document.getElementById('inputEmail').value;
+    var Ville = document.getElementById('inputVille').value;
+    var biography = document.getElementById('inputBiography').value; // Get the biography value
+
+
+
+
+
+
+    var imageFile = document.getElementById('profile-image-input').files[0];
+    if(imageFile) {
+        uploadImageToFirebase(imageFile).then(imageURL => {
+            saveUserProfile({
+                username: username,
+                firstName: firstName,
+                lastName: lastName,
+                cin: cin,
+                cne: cne,
+                gender: gender,
+                phoneNumber: phoneNumber,
+                promotion:promotion,
+                filiere:filiere,
+                birthPlace: birthPlace,
+                birthDate: birthDate,
+                Ecole:Ecole,
+                Age:Age,
+                Email:Email,
+                Ville:Ville,
+                biography:biography,
+                profileImageUrl: imageURL
+            });
+        }).catch(error => {
+            console.error("Error uploading image: ", error);
+        });
+    } else {
+        saveUserProfile({
+            username: username,
+            firstName: firstName,
+            lastName: lastName,
+            cin: cin,
+            cne: cne,
+            gender: gender,
+            phoneNumber: phoneNumber,
+            birthPlace: birthPlace,
+            birthDate: birthDate,
+            filiere:filiere,
+            Age:Age,
+            Ecole:Ecole,
+            Email:Email,
+            Ville:Ville,
+            biography:biography,
+            promotion:promotion
+        });
+    }
+});
+
+
+
+function uploadImageToFirebase(imageFile) {
+        return new Promise((resolve, reject) => {
+            var storageRef = firebase.storage().ref('profile_images/' + imageFile.name);
+            storageRef.put(imageFile).then(function(snapshot) {
+                snapshot.ref.getDownloadURL().then(function(url) {
+                    resolve(url);
+                });
+            }).catch(function(error) {
+                reject(error);
+            });
+        });
+    }
+
+    
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+
+        console.log("User is signed in.");
+
+    } else {
+
+        window.location.href = 'index.html';
+    }
+});
+
+function saveUserProfile(userData) {
+    var user = firebase.auth().currentUser;
+    if (user) {
+        console.log("Saving user profile for user:", user.uid); 
+        console.log("User data being saved:", userData); 
+
+
+        return firebase.database().ref('users/' + user.uid).set(userData)
+            .then(function() {
+                console.log("User profile saved successfully!");
+
+
+                var successMessage = document.getElementById('success-message');
+                successMessage.classList.remove('d-none');
+
+
+                setTimeout(function() {
+                    successMessage.classList.add('d-none');
+
+
+                    window.location.href = 'account.html';
+                }, 3000); 
+
+            })
+            .catch(function(error) {
+                console.error("Error saving user data: ", error);
+
+            });
+    } else {
+        console.log("No user is signed in.");
+        window.location.href = 'index.html';
+    }
+}
+
+
+function displayMessage(message, type) {
+    var messageContent = document.getElementById('message-content');
+    var messageBox = document.getElementById('message-box');
+
+    messageContent.textContent = message;
+
+    if (type === "success") {
+        messageBox.classList.remove("alert-danger");
+        messageBox.classList.add("alert-success");
+    } else if (type === "error") {
+        messageBox.classList.remove("alert-success");
+        messageBox.classList.add("alert-danger");
+    }
+
+    messageBox.classList.remove("d-none");
+}
+
+
+
+function getUserProfile(uid) {
+    firebase.database().ref('users/' + uid).once('value').then(function(snapshot) {
+        var userData = snapshot.val();
+        if (userData) {
+            document.getElementById('inputUsername').value = userData.username || '';
+            document.getElementById('inputFirstName').value = userData.firstName || '';
+            document.getElementById('inputLastName').value = userData.lastName || '';
+            document.getElementById('inputCin').value = userData.cin || '';
+            document.getElementById('inputCne').value = userData.cne || '';
+            document.getElementById('inputGender').value = userData.gender || '';
+            document.getElementById('inputPhone').value = userData.phoneNumber || '';
+            document.getElementById('inputPlace').value = userData.birthPlace || '';
+            document.getElementById('inputBirthday').value = userData.birthDate || '';
+            document.getElementById('inputPromotion').value = userData.promotion || '';
+            document.getElementById('inputFiliere').value = userData.filiere || '';
+            document.getElementById('inputEcole').value = userData.Ecole || '';
+            document.getElementById('inputAge').value = userData.Age || '';
+            document.getElementById('inputVille').value = userData.Ville || '';
+            document.getElementById('inputEmail').value = userData.Email || '';
+            document.getElementById('inputBiography').value = userData.biography || '';
+
+
+
+
+
+
+
+            if (userData.profileImageUrl) {
+                document.getElementById('profile-image').src = userData.profileImageUrl;
+            } else {
+                document.getElementById('profile-image').src = 'http://bootdey.com/img/Content/avatar/avatar1.png';
+            }
+        }
+    }).catch(function(error) {
+        console.log("Error getting user data:", error);
+    });
+}
+
+</script>
+</body>
+</html>

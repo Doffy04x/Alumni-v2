@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Autre Utilisateurs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+            
+        body {
+            margin-top: 20px;
+            background-color: #f2f6fc;
+            color: #69707a;
+        }
+        .img-account-profile {
+            height: 10rem;
+        }
+        .rounded-circle {
+            border-radius: 50% !important;
+        }
+        .card {
+            box-shadow: 0 0.15rem 1.75rem 0 rgb(33 40 50 / 15%);
+        }
+        .card .card-header {
+            font-weight: 500;
+        }
+        .card-header:first-child {
+            border-radius: 0.35rem 0.35rem 0 0;
+        }
+        .card-header {
+            padding: 1rem 1.35rem;
+            margin-bottom: 0;
+            background-color: rgba(33, 40, 50, 0.03);
+            border-bottom: 1px solid rgba(33, 40, 50, 0.125);
+        }
+        .form-control, .dataTable-input {
+            display: block;
+            width: 100%;
+            padding: 0.875rem 1.125rem;
+            font-size: 0.875rem;
+            font-weight: 400;
+            line-height: 1;
+            color: #69707a;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #c5ccd6;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border-radius: 0.35rem;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+        .nav-borders .nav-link.active {
+            color: #0061f2;
+            border-bottom-color: #0061f2;
+        }
+        .nav-borders .nav-link {
+            color: #69707a;
+            border-bottom-width: 0.125rem;
+            border-bottom-style: solid;
+            border-bottom-color: transparent;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: 1rem;
+            margin-right: 1rem;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 15px;
+        }
+        .user-profile img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+        .user-info {
+            margin-left: 10px;
+        }
+        .footer {
+color: #69707a;
+text-align: center;
+padding: 10px 0;
+position: absolute;
+bottom: 20;
+width: 100%;
+border-top: 1px solid #c5ccd6;
+}
+
+.footer .container {
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+}
+.custom-alert-box {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.custom-alert-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#alertTitle {
+    color: green;
+    margin-bottom: 15px;
+}
+.user-card .card {
+    margin-bottom: 30px; /* Spacing between rows */
+}
+
+.img-account-profile {
+    height: 10rem;
+    width: 10rem; /* Keep the images circular */
+    object-fit: cover;
+    margin-top: 15px; /* Add space above the image */
+}
+
+.card-body {
+    padding: 15px; /* Adjust padding as needed */
+}
+
+.card-text {
+    margin: 5px 0; /* Space out the text lines */
+}
+.bg-light {
+    background-color: #f8f9fa!important;
+}
+
+/* Search Bar Input and Select */
+.form-control, .form-select {
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    appearance: none;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+/* Search Button */
+.btn-primary {
+    color: #fff;
+    background-color: #e32209;
+    border-color: #007bff;
+    box-shadow: none;
+}
+#signOutButton {
+    color: #dc3545; /* Bootstrap's red color */
+}
+
+/* Optional: If you want the 'Se déconnecter' link to look like a button */
+#signOutButton {
+    padding: .375rem .75rem; /* Button padding */
+    border: 1px solid #dc3545; /* Border to match text color */
+    border-radius: .25rem; /* Rounded corners for the button */
+    background-color: transparent; /* Transparent background */
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+}
+
+#signOutButton:hover {
+    color: #fff; /* White text on hover */
+    background-color: #dc3545; /* Red background on hover */
+    text-decoration: none; /* Remove underline on hover */
+}   
+.profile-icon {
+    height: 32px; /* Adjust the size as needed */
+    width: auto; /* Keeps the aspect ratio */
+    cursor: pointer; /* Changes the cursor to indicate it's clickable */
+}
+
+/* Style the dropdown menu */
+.dropdown-menu {
+    right: 0; /* Align the dropdown to the right */
+}
+/* Pagination Styling */
+.pagination {
+display: flex;
+list-style: none;
+padding-left: 0;
+justify-content: center;
+}
+
+.page-item.active .page-link {
+background-color: #007bff;
+color: white;
+border-color: #007bff;
+}
+
+.page-link {
+color: #007bff;
+padding: 5px 10px;
+text-decoration: none;
+border: 1px solid #ddd;
+margin: 0 2px;
+}
+
+.page-link:hover {
+text-decoration: none;
+background-color: #e9ecef;
+}
+
+
+        /* Add any additional styling you need for the cards */
+        /* ... */
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <!-- Your existing navigation and other content -->
+        <!-- ... -->
+
+        <div class="container mt-4">
+            <!-- Your existing navigation and other content -->
+            <div class="container mt-4">
+
+                <!-- Top Navigation Menu -->
+                <nav class="nav nav-borders justify-content-between">
+                    <div></div> 
+                    <div class="dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png" alt="Profile Icon" class="profile-icon">
+                        </a>
+                
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li><a class="dropdown-item" href="account.html">Edit Profile</a></li>
+                            <li><a class="dropdown-item" href="parametres.html">Settings</a></li>
+                            <li><a class="dropdown-item" href="help-support.html">Help & Support</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="javascript:void(0);" id="signOutButton">Logout</a></li>
+                        </ul>
+                    </div>
+                </nav>
+    
+        <div class="bg-light py-3">
+            <div class="container">
+                <div class="row g-2">
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" id="searchQuery" placeholder="Qui recherchez-vous?" aria-label="Qui recherchez-vous?">
+                    </div>
+                    <div class="col-md-3">
+                    <select id="inputFiliere" class="form-select">
+                    <option value="">Toutes les filliéres</option>
+                    <option value="Informatique">Informatique</option>
+                    <option value="Mathématique">Mathématique</option>
+                    <option value="Physique">Physique</option>
+                    <option value="Anglais">Anglais</option>
+                    <option value="Francais">Francais</option>
+                    <option value="Arabe">Arabe</option>                        
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select id="inputPromotion" class="form-select">
+                            <option value="">Toutes les promotions</option>
+                            <option value="S1">S1</option>
+                            <option value="s2">S2</option>
+                            <option value="s3">S3</option>
+                            <option value="s4">S4</option>
+                            <option value="s5">S5</option>
+                            <option value="s6">S6</option>      
+                             </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-primary w-100" id="searchButton">RECHERCHER</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- User profiles grid -->
+        <div class="row" id="usersContainer">
+            <!-- User profiles will be inserted here dynamically with JavaScript -->
+        </div>
+        <nav aria-label="Page navigation">
+            <div id="paginationControls"></div>
+            <ul class="pagination" id="paginationContainer">
+                <!-- Pagination buttons will be added here by JavaScript -->
+            </ul>
+        </nav>
+        
+        <footer class="footer">
+            <div class="container">
+                <span>&copy; 2023 Unes Bhs . All Rights Reserved.</span>
+                <span>Created by  ♛ Younes Benelhoms ♛.</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Firebase Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.getElementById('signOutButton').addEventListener('click', function() {
+    firebase.auth().signOut().then(function() {
+
+        window.location.href = 'index.html';
+    }).catch(function(error) {
+
+        console.error("Error signing out: ", error);
+    });
+});
+        var currentPage = 1;
+        var usersPerPage = 6;
+
+        var firebaseConfig = {
+            apiKey: "AIzaSyDs2gZJ6wIRDOqEtzyIT7toug3Xs3-_w1E",
+        authDomain: "user-7c7f8.firebaseapp.com",
+        projectId: "user-7c7f8",
+        storageBucket: "user-7c7f8.appspot.com",
+        messagingSenderId: "55544751979",
+        appId: "1:55544751979:web:40366cb78cb1cf8162ce2e",
+        measurementId: "G-FP9KRJ1GV3"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+// Example of constructing a link with the correct userId
+
+        // Function to create user profile cards
+        function createUserProfile(userData, userId) {
+            console.log("Creating profile card for:", userId); // Debug: Log the userId
+
+    var userDiv = document.createElement('div');
+    userDiv.className = 'col-lg-4 col-md-6 user-card';
+    userDiv.innerHTML = `
+            <div class="card text-center"> <!-- Added text-center here to center all card contents -->
+                <img src="${userData.profileImageUrl || 'http://bootdey.com/img/Content/avatar/avatar1.png'}" class="card-img-top img-account-profile rounded-circle mx-auto d-block" alt="Profile Picture">
+                <div class="card-body">
+                    <p><strong>Nom D'Utilisateur:</strong> ${userData.username || 'N/A'}</p>
+                                    <p><strong>Nom complet:</strong> ${userData.firstName || ''} ${userData.lastName || ''}</p>
+                                    <p><strong>Genre:</strong> ${userData.gender || 'N/A'}</p>
+                                    <p><strong>Date de Naissance:</strong> ${userData.birthDate || 'N/A'}</p>
+                                    <p><strong>Lieu de Naissance:</strong> ${userData.birthPlace || 'N/A'}</p>
+                                    <p><strong>Ville actuelle:</strong> ${userData.Ville || 'N/A'}</p>
+                                    <p><strong>Ecole actuelle:</strong> ${userData.Ecole || 'N/A'}</p>
+                                    <a href="person.html?userId=${userId}" class="btn btn-primary mt-2">View Profile</a>
+                                    <a href="mailto:${userData.Email}" class="btn btn-secondary mt-2">Send Message</a>
+
+
+                </div>
+            </div>
+        `;
+        return userDiv;
+    }
+    function openChat(userId) {
+    // For now, just log the userId. You'll need to implement the chat functionality.
+    console.log("Open chat with user ID:", userId);
+    // Here, you can redirect to a chat page or open a modal for chatting.
+}
+        
+        // This function handles rendering the user profiles for the current page
+        function renderPage(page) {
+    var dbRef = firebase.database().ref('users');
+    dbRef.once('value').then(function(snapshot) {
+        const usersContainer = document.getElementById('usersContainer');
+        usersContainer.innerHTML = '';
+        var usersArray = [];
+        snapshot.forEach(function(userSnapshot) {
+            var userId = userSnapshot.key;
+            var userData = userSnapshot.val();
+            usersArray.push({ userId, ...userData });
+        });
+
+        var startIndex = (page - 1) * usersPerPage;
+        var endIndex = startIndex + usersPerPage;
+        var paginatedUsers = usersArray.slice(startIndex, endIndex);
+
+        paginatedUsers.forEach(function(user) {
+            var userCard = createUserProfile(user, user.userId);
+            usersContainer.appendChild(userCard);
+        });
+
+        renderPagination(usersArray.length, page);
+    }).catch(function(error) {
+        console.error("Error fetching user data:", error);
+    });
+}
+
+        // Function to render pagination controls
+        function renderPagination(totalUsers, currentPage) {
+            var totalPages = Math.ceil(totalUsers / usersPerPage);
+            var paginationContainer = document.getElementById('paginationContainer');
+            paginationContainer.innerHTML = ''; // Clear existing pagination controls
+
+            for (var i = 1; i <= totalPages; i++) {
+                var pageItem = document.createElement('li');
+                pageItem.className = 'page-item ' + (i === currentPage ? 'active' : '');
+
+                var pageLink = document.createElement('a');
+                pageLink.className = 'page-link';
+                pageLink.href = '#';
+                pageLink.innerText = i;
+                pageLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    currentPage = parseInt(this.innerText);
+                    renderPage(currentPage);
+                });
+
+                pageItem.appendChild(pageLink);
+                paginationContainer.appendChild(pageItem);
+            }
+        }
+
+        
+        window.onload = function() {
+            renderPage(currentPage); // Start on the current page, which is set to 1 initially
+        };
+
+        document.getElementById('searchButton').addEventListener('click', function() {
+            performSearch();
+        });
+
+        // Function to perform a search
+        function performSearch() {
+    var query = document.getElementById('searchQuery').value.toLowerCase();
+    var selectedPromotion = document.getElementById('inputPromotion').value;
+    var selectedFiliere = document.getElementById('inputFiliere').value;
+    
+    // Reference to the Firebase Realtime Database
+    var dbRef = firebase.database().ref('users');
+
+    dbRef.once('value').then(function(snapshot) {
+        var filteredUsers = [];
+        snapshot.forEach(function(userSnapshot) {
+            var userData = userSnapshot.val();
+            // Adjust this logic based on your user data structure and what you want to search by
+            if (
+                ((selectedPromotion === '' || userData.promotion === selectedPromotion) &&
+                (selectedFiliere === '' || userData.filiere === selectedFiliere)) &&
+                (
+                    userData.firstName.toLowerCase().includes(query) ||
+                    userData.lastName.toLowerCase().includes(query) ||
+                    userData.username.toLowerCase().includes(query)
+                )
+            ) {
+                filteredUsers.push(userData);
+            }
+        });
+        renderPageWithSearchResults(filteredUsers);
+    }).catch(function(error) {
+        console.error("Error fetching user data:", error);
+    });
+}
+
+
+        // Function to render search results
+        function renderPageWithSearchResults(users) {
+            const usersContainer = document.getElementById('usersContainer');
+            usersContainer.innerHTML = ''; // Clear existing content
+            users.forEach(function(userData) {
+                var userCard = createUserProfile(userData);
+                usersContainer.appendChild(userCard);
+            });
+
+            // Optionally, update or hide pagination controls
+            // If you decide to update them, you'll need to adjust the renderPagination function accordingly
+        }
+
+    </script>
+
+</body>
+</html>
