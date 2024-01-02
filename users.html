@@ -353,13 +353,11 @@ background-color: #e9ecef;
             <div class="card text-center"> <!-- Added text-center here to center all card contents -->
                 <img src="${userData.profileImageUrl || 'http://bootdey.com/img/Content/avatar/avatar1.png'}" class="card-img-top img-account-profile rounded-circle mx-auto d-block" alt="Profile Picture">
                 <div class="card-body">
-                    <p><strong>Nom D'Utilisateur:</strong> ${userData.username || 'N/A'}</p>
                                     <p><strong>Nom complet:</strong> ${userData.firstName || ''} ${userData.lastName || ''}</p>
                                     <p><strong>Genre:</strong> ${userData.gender || 'N/A'}</p>
-                                    <p><strong>Date de Naissance:</strong> ${userData.birthDate || 'N/A'}</p>
-                                    <p><strong>Lieu de Naissance:</strong> ${userData.birthPlace || 'N/A'}</p>
-                                    <p><strong>Ville actuelle:</strong> ${userData.Ville || 'N/A'}</p>
-                                    <p><strong>Ecole actuelle:</strong> ${userData.Ecole || 'N/A'}</p>
+                                    
+                                    <p><strong>Filiére actuelle:</strong> ${userData.filiere || 'N/A'}</p>
+                                    <p><strong>Promotion actuelle:</strong> ${userData.promotion || 'N/A'}</p>
                                     <a href="person.html?userId=${userId}" class="btn btn-primary mt-2">View Profile</a>
                                     <a href="mailto:${userData.Email}" class="btn btn-secondary mt-2">Send Message</a>
 
